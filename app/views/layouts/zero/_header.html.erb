@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav nav">
+      <li class="nav-item">
+        <%= link_to 'Blogs', zero_blogs_path, class: 'nav-link'%>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Comments', zero_comments_path, class: 'nav-link'%>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Users', zero_users_path, class: 'nav-link'%>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Operations
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li>
+            <a href="#">Add Category</a>
+          </li>
+          <li>
+            <%= link_to 'Logout', zero_session_path, :method => :delete, :data => { :confirm => "Are sure to logout?" }%> 
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
