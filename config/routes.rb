@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :blogs, only: [:show, :index]
-
+  resources :comments, only: [:create]
   root to: 'blogs#index'
   
   namespace :zero do

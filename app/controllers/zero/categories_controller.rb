@@ -1,15 +1,10 @@
 class Zero::CategoriesController < ZeroController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.all
-  end
-
-  # GET /categories/1
-  # GET /categories/1.json
-  def show
   end
 
   # GET /categories/new
@@ -28,11 +23,9 @@ class Zero::CategoriesController < ZeroController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
+        format.html { redirect_to zero_categories_path, notice: 'Category was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,8 +49,7 @@ class Zero::CategoriesController < ZeroController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to zero_categories_path, notice: 'Category was successfully destroyed.' }
     end
   end
 
@@ -69,6 +61,6 @@ class Zero::CategoriesController < ZeroController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:name)
     end
 end
