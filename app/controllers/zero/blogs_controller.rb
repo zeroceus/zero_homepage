@@ -4,7 +4,11 @@ class Zero::BlogsController < ZeroController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    if params[:category_id].present?
+      @blogs = Blog.where(category_id: params[:category_id]).page(params[:page])
+    else
+      @blogs = Blog.page params[:page]
+    end
   end
 
   # GET /blogs/1
@@ -67,4 +71,5 @@ class Zero::BlogsController < ZeroController
     def blog_params
       params.require(:blog).permit(:title, :content, :category_id)
     end
+
 end

@@ -4,7 +4,8 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    # @blogs = Blog.all
+    render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
   end
 
   # GET /blogs/1

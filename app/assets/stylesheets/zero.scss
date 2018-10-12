@@ -1,5 +1,11 @@
 @import "bootstrap";
+@import "zero/dashboard";
+@import "zero/blogs";
 
 #nav-header {
   positon: sticky;
+}
+.btn {
+  min-width: 120px;
+  border-radius: 20px;
 }
