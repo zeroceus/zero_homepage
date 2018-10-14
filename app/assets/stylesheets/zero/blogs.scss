@@ -10,3 +10,13 @@
 .content-area {
   min-height: 200px;
 }
+.blog-form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.blog-content-previewer {
+  min-height: 500px;
+  width: 300px;
+}

@@ -1,29 +1,70 @@
-<div class="blog-form">
-<%= form_with(model: blog, url: zero_blogs_path, local: true) do |form| %>
-  <% if blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+<div class='blog-form-container'>
+  <div class="blog-form">
+    <%= form_with(model: blog, url: zero_blogs_path, local: true) do |form| %>
+      <% if blog.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
 
-      <ul>
-      <% blog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% blog.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+      <div class="form-group">
+        <%= form.label :title, class: 'control-label' %>
+        <%= form.text_field :title , class: 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= form.label :category, class: 'control-label' %>
+        <%= form.select :category_id, Category.all.map{|category| [category.name, category.id]}, {}, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= form.label :images, class: 'control-label' %>
+        <%= form.file_field :images, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= form.label :content, class: 'control-label' %>
+        <%= form.text_area :content, class: 'form-control content-area' %>
+      </div>
+      <div class="actions">
+        <%= form.submit 'Create', class: 'btn btn-primary'  %>
+      </div>
+    <% end %>
+  </div>
+  <div class="blog-content-previewer">
+    <div class='blog-preview'>
+        <%= @preview%>
     </div>
-  <% end %>
-  <div class="form-group">
-    <%= form.label :title, class: 'control-label' %>
-    <%= form.text_field :title , class: 'form-control'%>
   </div>
-  <div class="form-group">
-    <%= form.label :category, class: 'control-label' %>
-    <%= form.select :category_id, Category.all.map{|category| [category.name, category.id]}, {}, class: 'form-control'%>
-  </div>
-  <div class="form-group">
-    <%= form.label :content, class: 'control-label' %>
-    <%= form.text_area :content, class: 'form-control content-area' %>
-  </div>
-  <div class="actions">
-    <%= form.submit 'Create', class: 'btn btn-primary'  %>
-  </div>
-<% end %>
+</div>
+<script>
+  var textarea = $('textarea[name="blog[content]"]')
+  const DEBOUNCE_INTERVAL = 1000
+
+  var timer
+
+  textarea.keyup(function(event) {
+    clearTimeout(timer)
+    timer = setTimeout(function() {
+      console.log(getContent())
+      setPreview(getContent())
+    }, DEBOUNCE_INTERVAL)
+  });
+
+  function getContent() {
+    return $('textarea[name="blog[content]"]').val();
+  }
+
+  function setPreview(content) {
+    $.ajax({
+      url: "<%=preview_zero_blogs_url%>",
+      data: {
+        content: getContent()
+      }
+    }).done(function(res) {
+      $('.blog-preview').html(res.result);
+    })
+  }
+</script>

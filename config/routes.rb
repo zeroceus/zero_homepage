@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     resource :session, only: [:new, :create, :destroy]
     resources :blogs do
       resources :comments
+      member do
+        post :delete_image
+      end
+      collection do 
+        get :preview
+      end
     end
     resources :comments
     resources :categories

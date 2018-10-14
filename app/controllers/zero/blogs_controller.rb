@@ -1,5 +1,5 @@
 class Zero::BlogsController < ZeroController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :delete_image]
 
   # GET /blogs
   # GET /blogs.json
@@ -61,6 +61,21 @@ class Zero::BlogsController < ZeroController
     end
   end
 
+  def delete_image
+    attachment = @blog.images.find(params[:attachment_id])
+    if attachment.purge
+      respond_to do |format|
+        # format.json {}, status: :ok
+      end
+    end
+  end
+
+  def preview
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    result = markdown.render(params[:content])
+    render json: {result: result}, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
@@ -69,7 +84,7 @@ class Zero::BlogsController < ZeroController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :content, :category_id)
+      params.require(:blog).permit(:title, :content, :category_id, :images)
     end
 
 end

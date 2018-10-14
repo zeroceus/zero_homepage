@@ -18,3 +18,4 @@
 /config/*.yml
 Gemfile.lock
 /storage
+.byebug_history

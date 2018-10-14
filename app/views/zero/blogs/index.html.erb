@@ -18,7 +18,6 @@
       <tr>
         <td><%= blog.title%></td>
         <td><%= blog.category.name%></td>
-        <td><%= blog.abstract%></td>
         <td><%= link_to 'Show', zero_blog_path(blog) %></td>
         <td><%= link_to 'Edit', edit_zero_blog_path(blog) %></td>
         <td><%= link_to 'Destroy', zero_blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' } %></td>
