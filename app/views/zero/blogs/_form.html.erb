@@ -1,6 +1,6 @@
 <div class='blog-form-container'>
   <div class="blog-form">
-    <%= form_with(model: blog, url: zero_blogs_path, local: true) do |form| %>
+    <%= form_with(model: blog, url: blog.persisted? ? zero_blog_path(blog) : zero_blogs_path, local: true) do |form| %>
       <% if blog.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
@@ -22,8 +22,11 @@
       </div>
       <div class="form-group">
         <%= form.label :images, class: 'control-label' %>
-        <%= form.file_field :images, class: 'form-control'%>
+        <%= form.file_field :images, multiple: true, class: 'form-control'%>
       </div>
+      <% blog.images.each do |image|%>
+        <%= image_tag(image, width: 150, :onClick => "copyImageSrc(this);")%>
+      <% end %>
       <div class="form-group">
         <%= form.label :content, class: 'control-label' %>
         <%= form.text_area :content, class: 'form-control content-area' %>
@@ -59,6 +62,7 @@
 
   function setPreview(content) {
     $.ajax({
+      type: "POST",
       url: "<%=preview_zero_blogs_url%>",
       data: {
         content: getContent()
@@ -66,5 +70,18 @@
     }).done(function(res) {
       $('.blog-preview').html(res.result);
     })
+  }
+
+  function copyImageSrc(event) {
+    var content = event.getAttribute('src')
+    const input = document.createElement('input');
+    document.body.appendChild(input);
+    input.setAttribute('value', content);
+    input.select();
+    if (document.execCommand('copy')) {
+      document.execCommand('copy');
+      console.log('复制成功');
+    }
+      document.body.removeChild(input);
   }
 </script>

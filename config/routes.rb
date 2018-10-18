@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         post :delete_image
       end
       collection do 
-        get :preview
+        post :preview
       end
     end
     resources :comments

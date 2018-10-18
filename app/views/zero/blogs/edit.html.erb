@@ -1,6 +1,19 @@
-<h1>Editing Blog</h1>
+<div class="blog-edit-header">
+  <h1>Editing Blog</h1>
+  <span>
+    <%= link_to 'Show', zero_blogs_path(@blog), class: 'btn btn-primary' %>
+  </span>
+  <span>
+    <%= link_to 'Back', zero_blogs_path, class: 'btn btn-info' %>
+  </span>
+</div>
 
-<%= render 'form', blog: @blog %>
+<div class="blog-new">
+  <%= render 'form', blog: @blog %>
+</div>
 
-<%= link_to 'Show', zero_blogs_path(@blog) %> |
-<%= link_to 'Back', zero_blogs_path %>
+
+
+
+
+

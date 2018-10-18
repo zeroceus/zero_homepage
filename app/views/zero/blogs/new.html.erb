@@ -1,7 +1,7 @@
+<u>
+  <%= link_to 'Back to index', zero_blogs_path, class: 'back-btn' %>
+</u>
+
 <div class="blog-new">
-  <h1>New Blog</h1>
-
   <%= render 'form', blog: @blog %>
-
-  <%= link_to 'Back', zero_blogs_path, class: 'btn btn-primary' %>
 </div>

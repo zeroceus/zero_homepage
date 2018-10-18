@@ -84,7 +84,7 @@ class Zero::BlogsController < ZeroController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :content, :category_id, :images)
+      params.require(:blog).permit(:title, :content, :category_id, :images => [])
     end
 
 end

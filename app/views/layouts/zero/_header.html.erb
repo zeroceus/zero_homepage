@@ -19,10 +19,14 @@
             <%= link_to 'Add Category', new_zero_category_path%>
           </li>
           <li>
+            <%= link_to 'New Blog', new_zero_blog_path %>
+          </li>
+          <li>
             <%= link_to 'Logout', zero_session_path, :method => :delete, :data => { :confirm => "Are sure to logout?" }%> 
           </li>
         </ul>
       </li>
     </ul>
+    <%= image_tag('zero_avatar.jpg', class: 'zero-avatar') %>
   </div>
 </nav>

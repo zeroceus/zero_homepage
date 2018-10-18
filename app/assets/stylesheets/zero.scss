@@ -5,7 +5,28 @@
 #nav-header {
   positon: sticky;
 }
+.navbar-nav {
+  height: 60px;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+}
+.nav-link {
+  height: 100%;
+  font-size: 20px;
+}
 .btn {
   min-width: 120px;
   border-radius: 20px;
+}
+.zero-avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  float: right;
+  right: 10px;
 }
