@@ -19,3 +19,9 @@
 Gemfile.lock
 /storage
 .byebug_history
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+config/credentials.yml.enc
+configfig/environments/production.rb
+nohup.out
+public/assets/*

@@ -78,4 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.public_file_server.enabled = true
+  
+  ZERO_NAME             = Rails.application.secrets.ZERO_NAME
+  ZERO_SECRET           = Rails.application.secrets.ZERO_SECRET
 end
