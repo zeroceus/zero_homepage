@@ -39,7 +39,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Store the pid of the server in the file at "path".
 #
-pidfile '/zero_homepage/tmp/pids/puma.pid'
+pidfile 'tmp/pids/puma.pid'
 
 # Use "path" as the file to store the server info state. This is
 # used by "pumactl" to query and control the server.
