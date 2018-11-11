@@ -19,7 +19,7 @@
       <%= form.label :cover, class: 'control-label' %>
       <%= form.file_field :cover, class: 'form-control' %>
     </div>
-    <% if category.cover.present?%>
+    <% if category.cover.attached?%>
       <%= image_tag(url_for(category.cover)) %>
     <% end %>
     <div class="form-group">

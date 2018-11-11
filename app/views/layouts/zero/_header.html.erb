@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default" id="nav-header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-header">
+  <a class="navbar-brand" href="<%= root_path%>">Zero</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav nav">
       <li class="nav-item">
@@ -14,19 +15,13 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Operations
         </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li>
-            <%= link_to 'Add Category', new_zero_category_path%>
-          </li>
-          <li>
-            <%= link_to 'New Blog', new_zero_blog_path %>
-          </li>
-          <li>
-            <%= link_to 'Logout', zero_session_path, :method => :delete, :data => { :confirm => "Are sure to logout?" }%> 
-          </li>
-        </ul>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'Add Category', new_zero_category_path, class: 'dropdown-item'%>
+            <%= link_to 'New Blog', new_zero_blog_path, class: 'dropdown-item' %>
+            <%= link_to 'Logout', zero_session_path, :method => :delete, class: 'dropdown-item', :data => { :confirm => "Are sure to logout?" }%> 
+        </div>
       </li>
     </ul>
-    <%= image_tag('zero_avatar.jpg', class: 'zero-avatar') %>
   </div>
+  <%= image_tag('zero_avatar.jpg', class: 'zero-avatar') %>
 </nav>

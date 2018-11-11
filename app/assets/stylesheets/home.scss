@@ -1,0 +1,63 @@
+.home-header {
+  display: table;
+  margin: auto;
+  padding: 2rem 0;
+}
+.intro-header {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.avatar-container {
+    height: 175px;
+    transition: 0.5s;
+    transition-timing-function: ease-in-out;
+    perspective: 202px;
+    transform-style: preserve-3d;
+}
+.avatar {
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(0deg) translateZ(2px);
+}
+.avatar-back{
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg) translateZ(1px);
+}
+.avatar-container:hover {
+    transform: rotateY(180deg);
+}
+.zero-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 160px;
+}
+.kaga-intro {
+    border-radius: 10px;
+}
+section {
+    padding: 8rem 0 5rem;
+}
+.introduction {
+  font-size: 1.5rem;
+}
+.odd-section {
+  background: linear-gradient(to bottom, #87CEFA, rgba(0,0,0,0.1));
+}
+.even-section {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), #87CEFA);
+}
+.experience-block {
+  background-color: #F0F0F0;
+  margin-bottom: 40px;
+  padding: 20px 20px;
+  border-radius: 10px;
+  transition:background-color 0.4s linear;
+}
+.experience-block:hover {
+  background-color: #FCFCFC;
+}
+h4 {
+  margin-bottom: 30px;
+}

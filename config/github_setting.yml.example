@@ -1,0 +1,7 @@
+defaults: &defaults
+  client_id: ''
+  client_secret: ''
+development:
+  <<: *defaults
+production:
+  <<: *defaults

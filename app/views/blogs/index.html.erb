@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Blogs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3">Title</th>
-      <th colspan="3">Category</th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="blog-index col-lg-8 col-md-10 mx-auto">
+  <% if notice %>
+    <p id="notice" class="alert alert-success"><%= notice %></p>
+  <% end %>
     <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.category.name %></td>
-        <td><%= link_to 'Show', blog %></td>
-      </tr>
+      <div class="blog-block">
+        <h1><%= link_to blog.title, blog_path(blog), class: 'blog-title' %></h1>
+        <div class="blog-footer">
+          <ion-icon name="pricetag"></ion-icon>
+          <span class="blog-category"><%= link_to blog.category.name, blogs_path(category_id: blog.category_id), class: 'blog-category-name'%></span>
+          <span class="blog-created-time"><%= blog.created_at.strftime('%F')%></span>
+        </div>
+      </div>
+      <hr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
+  <%= paginate @blogs%>
+</div>

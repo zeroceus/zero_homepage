@@ -4,8 +4,12 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    # @blogs = Blog.all
-    render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
+    if params[:category_id].present?
+      @blogs = Blog.where(category_id: params[:category_id]).page(params[:page])
+    else
+      @blogs = Blog.page params[:page]
+    end
+    # render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
   end
 
   # GET /blogs/1

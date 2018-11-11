@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :blogs, only: [:show, :index]
   resources :comments, only: [:create]
+  resources :categories, only: [:index]
+  get 'about' => 'home#index'
   root to: 'blogs#index'
   
   namespace :zero do

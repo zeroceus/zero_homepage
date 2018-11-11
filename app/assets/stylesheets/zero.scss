@@ -5,19 +5,8 @@
 #nav-header {
   positon: sticky;
 }
-.navbar-nav {
-  height: 60px;
-}
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align:center;
-}
-.nav-link {
-  height: 100%;
-  font-size: 20px;
+.navbar-brand {
+  padding-left: 40px;
 }
 .btn {
   min-width: 120px;
@@ -27,6 +16,4 @@
   height: 60px;
   width: 60px;
   border-radius: 30px;
-  float: right;
-  right: 10px;
 }
