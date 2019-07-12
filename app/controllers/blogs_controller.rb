@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :base_data
 
   # GET /blogs
   # GET /blogs.json
@@ -23,4 +24,8 @@ class BlogsController < ApplicationController
       @blog = Blog.find(params[:id])
     end
 
+    def base_data
+      @categories = Category.all
+      @oauth_url = GithubApi.get_oauth_authorize_url("/oauth_authorize")
+    end
 end

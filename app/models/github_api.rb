@@ -1,33 +1,29 @@
 require "net/https"
+require 'securerandom'
 
 class GithubApi
-  def initialize(client_id, client_secret)
-    @client_id = client_id
-    @client_secret = client_secret
-  end
-
 
   class << self
-    def get_oauth_authorize(redirect_uri, scope='user', allow_signup=true)
+    def get_oauth_authorize_url(redirect_uri, scope='user', allow_signup=true)
       params = {
-        client_id: @client_id,
+        client_id: GithubSetting.client_id,
         redirect_uri: redirect_uri,
         scope: scope,
-        state: ,
+        state: SecureRandom.hex(10),
         allow_signup: allow_signup
       }
 
       uri = URI("https://github.com/login/oauth/authorize")
       uri.query = URI.encode_www_form(params)
-      res = Net::HTTP.get_response(uri)
+      uri.to_s
     end
 
-    def get_oauth_access_token(code)
+    def get_oauth_access_token(redirect_uri, code)
       params = {
-        client_id: @client_id,
-        client_secret: @client_secret,
+        client_id: GithubSetting.client_id,
+        client_secret: GithubSetting.client_secret,
         code: code,
-        redirect_uri: redirect_uri
+        redirect_uri: redirect_uri,
         state: state
       }
       uri = URI("https://github.com/login/oauth/access_token")
@@ -35,6 +31,9 @@ class GithubApi
 
     def user_access(access_token)
       uri = URI("https://api.github.com/user")
+      req = Net::HTTP::Get.new(uri.path)
+      req["Authorization"] = "#{access_token} OAUTH-TOKEN"
+      response = http.request(req)
     end
   end
 end

@@ -38,3 +38,12 @@ a {
 a:hover {
     color: #4169E1;
 }
+
+.header {
+    width: 100%;
+    margin: 0 20px;
+    display: flex;
+    fled-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

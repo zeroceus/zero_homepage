@@ -3,9 +3,14 @@ Rails.application.routes.draw do
   resources :blogs, only: [:show, :index]
   resources :comments, only: [:create]
   resources :categories, only: [:index]
+
+  get :oauth_authorize, controller: "application"
   get 'about' => 'home#index'
   root to: 'blogs#index'
-  
+  get 'login' => 'home#login'
+
+  get 'auth' => 'home#auth'
+
   namespace :zero do
     resource :session, only: [:new, :create, :destroy]
     resources :blogs do

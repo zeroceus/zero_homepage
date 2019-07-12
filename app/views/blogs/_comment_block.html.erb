@@ -1,0 +1,26 @@
+<div class="comment-area container">
+  <div class="comments">
+  </div>
+
+  <%= form_with(url: comments_path, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label '评论内容', class: 'control-label' %>
+      <%= form.text_area :content, class: 'form-control' %>
+    </div>
+    
+  <% end %>
+
+
+  <div>
+    <% if @current_user.blank?%>
+      <a href="<%=@oauth_url%>">
+        <ion-icon name="logo-github" class="align-middle" style="font-size: 42px;"></ion-icon>
+      </a>
+      <p class="hint">请先登陆后再进行评论</p>
+    <% else %>
+      <div class="form-group">
+        <%= form.submit 'Comment', class: 'btn btn-primary btn-sm' %>
+      </div>
+    <% end %>
+  </div>
+</div>
