@@ -35,7 +35,7 @@ class CategoriesController < ZeroController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to zero_category_path(@category), notice: 'Category was successfully updated.' }
+        format.html { redirect_to edit_zero_category_path(@category), notice: 'Category was successfully updated.' }
       else
         format.html { render :edit }
       end
