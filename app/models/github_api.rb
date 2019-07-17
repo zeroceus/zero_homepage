@@ -37,7 +37,7 @@ class GithubApi
       res = Net::HTTP.start(uri.host, uri.port) {|http|
         http.request(req)
       }
-      puts res
+      Rails.logger.info res
     end
   end
 end

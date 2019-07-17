@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   def oauth_authorize
     access_token = params["access_token"]
-    puts params
+    Rails.logger.info params
     data = GithubApi.user_access(session[:access_token])
-    puts data
+    Rails.logger.info data
   end
 
 end
