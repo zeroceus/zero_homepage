@@ -29,7 +29,7 @@ class GithubApi
       uri = URI("https://github.com/login/oauth/access_token")
       header = {'Accept': 'application/json'}
       http = Net::HTTP.new(uri.host, uri.port)
-      req = Net::HTTP::Post.new(uri.request_uri)
+      req = Net::HTTP::Post.new(uri.request_uri, header)
       req.body = params.to_json
       http.use_ssl = true
       response = http.request(req)
