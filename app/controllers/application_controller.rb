@@ -6,11 +6,10 @@ class ApplicationController < ActionController::Base
   def auth
     code, state = params["code"], params["state"]
     response = GithubApi.get_oauth(code, state)
-    render response
-    # access_token = response.body["access_token"]
-    # user_data = GithubApi.user_access(access_token)
-    # Rails.logger.info user_data
-    # redirect_to request.referer
+    access_token = response["access_token"]
+    user_data = GithubApi.user_access(access_token)
+    Rails.logger.info user_data
+    redirect_to root_path
   end
 
 end
