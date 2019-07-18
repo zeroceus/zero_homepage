@@ -5,11 +5,12 @@ class ApplicationController < ActionController::Base
 
   def auth
     code, state = params["code"], params["state"]
-    response = GithubApi.get_oauth(root_url(host: 'zero-no-kaga.moe'), code, state)
-    access_token = response.body["access_token"]
-    user_data = GithubApi.user_access(access_token)
-    Rails.logger.info user_data
-    redirect_to request.referer
+    response = GithubApi.get_oauth(code, state)
+    render response
+    # access_token = response.body["access_token"]
+    # user_data = GithubApi.user_access(access_token)
+    # Rails.logger.info user_data
+    # redirect_to request.referer
   end
 
 end

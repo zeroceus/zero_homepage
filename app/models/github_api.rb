@@ -18,26 +18,26 @@ class GithubApi
       uri.to_s
     end
 
-    def get_oauth(redirect_uri, code, state)
+    def get_oauth(code, state)
       params = {
         client_id: GithubSetting.client_id,
         client_secret: GithubSetting.client_secret,
         code: code,
-        redirect_uri: redirect_uri,
         state: state
       }
       uri = URI("https://github.com/login/oauth/access_token")
-      header = {'Accept': 'application/json'}
+      header = {'Content-Type': 'application/json', 'Accpet': 'application/json'}
       http = Net::HTTP.new(uri.host, uri.port)
-      req = Net::HTTP::Post.new(uri.request_uri, header)
+      req = Net::HTTP::Post.new(uri.path, header)
       req.body = params.to_json
       http.use_ssl = true
-      response = http.request(req)
+      res = http.request(req).body
     end
 
     def user_access(access_token)
       uri = URI("https://api.github.com/user")
       req = Net::HTTP::Get.new(uri.path)
+      http.use_ssl = true
       req["Authorization"] = "#{access_token} OAUTH-TOKEN"
       res = Net::HTTP.start(uri.host, uri.port) {|http|
         http.request(req)
