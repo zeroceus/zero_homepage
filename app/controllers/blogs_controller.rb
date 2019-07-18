@@ -26,7 +26,7 @@ class BlogsController < ApplicationController
 
     def base_data
       @categories = Category.all
-      @oauth_url = GithubApi.get_oauth_authorize_url(oauth_authorize_url)
+      @oauth_url = GithubApi.get_oauth_authorize_url(auth_url)
       Rails.logger.info @oauth_url
     end
 end

@@ -18,7 +18,7 @@ class GithubApi
       uri.to_s
     end
 
-    def get_oauth_access_token(redirect_uri, code)
+    def get_oauth(redirect_uri, code, state)
       params = {
         client_id: GithubSetting.client_id,
         client_secret: GithubSetting.client_secret,
@@ -27,6 +27,13 @@ class GithubApi
         state: state
       }
       uri = URI("https://github.com/login/oauth/access_token")
+      header = {'Content-Type': 'text/json'}
+      http = Net::HTTP.new(uri.host, uri.port)
+      req = Net::HTTP::POST.new(uri.request_uri)
+      req.body = params.to_json
+      response = http.request(req)
+      Rails.logger.info response
+      response
     end
 
     def user_access(access_token)
@@ -36,7 +43,8 @@ class GithubApi
       res = Net::HTTP.start(uri.host, uri.port) {|http|
         http.request(req)
       }
-      Rails.logger.debug res
+      Rails.logger.info res
+      res
     end
   end
 end

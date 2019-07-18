@@ -12,8 +12,10 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'execjs'
-gem 'mini_racer'
+group :production do
+  gem 'execjs'
+  gem 'mini_racer'
+end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

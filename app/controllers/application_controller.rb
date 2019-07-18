@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def oauth_authorize
-    access_token = params["access_token"]
-    Rails.logger.debug params
-    data = GithubApi.user_access(session[:access_token])
-    Rails.logger.debug data
-  end
+  def auth
+    code, state = params["code"], params["state"]
+    data = GithubApi.get_oauth(get_access_token_url, code, state)
+    Rails.logger.info data
 
+    user_data = GithubApi.user_access(data["access_token"])
+  end
 end

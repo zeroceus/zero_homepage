@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :comments, only: [:create]
   resources :categories, only: [:index]
 
-  get :oauth_authorize, controller: "application"
+  get :auth, controller: "application"
+
   get 'about' => 'home#index'
   root to: 'blogs#index'
   get 'login' => 'home#login'
