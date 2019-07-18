@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:index]
 
   get :auth, controller: "application"
-  get :user_access, controller: "application"
 
   get 'about' => 'home#index'
   root to: 'blogs#index'
