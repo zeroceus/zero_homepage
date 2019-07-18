@@ -31,9 +31,8 @@ class GithubApi
       http = Net::HTTP.new(uri.host, uri.port)
       req = Net::HTTP::Post.new(uri.request_uri)
       req.body = params.to_json
+      http.use_ssl = true
       response = http.request(req)
-      Rails.logger.info response
-      response
     end
 
     def user_access(access_token)
@@ -43,8 +42,6 @@ class GithubApi
       res = Net::HTTP.start(uri.host, uri.port) {|http|
         http.request(req)
       }
-      Rails.logger.info res
-      res
     end
   end
 end

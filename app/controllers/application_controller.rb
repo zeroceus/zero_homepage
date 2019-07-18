@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def auth
     code, state = params["code"], params["state"]
-    GithubApi.get_oauth(user_access_url(host: 'zero-no-kaga.moe'), code, state)
+    response = GithubApi.get_oauth(user_access_url(host: 'zero-no-kaga.moe'), code, state)
   end
 
   def user_access
