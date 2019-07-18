@@ -29,7 +29,7 @@ class GithubApi
       uri = URI("https://github.com/login/oauth/access_token")
       header = {'Content-Type': 'text/json'}
       http = Net::HTTP.new(uri.host, uri.port)
-      req = Net::HTTP::POST.new(uri.request_uri)
+      req = Net::HTTP::Post.new(uri.request_uri)
       req.body = params.to_json
       response = http.request(req)
       Rails.logger.info response
