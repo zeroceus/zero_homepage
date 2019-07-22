@@ -61,11 +61,12 @@
   }
 
   function setPreview(content) {
+    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
     $.ajax({
       type: "POST",
-      url: "<%=preview_zero_blogs_url%>",
+      url: "<%=preview_zero_blogs_url%>" + "?&authenticity_token=" + AUTH_TOKEN,
       data: {
-        content: getContent()
+        content: getContent(),
       }
     }).done(function(res) {
       $('.blog-preview').html(res.result);
