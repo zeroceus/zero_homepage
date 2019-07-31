@@ -35,12 +35,8 @@ class GithubApi
     end
 
     def user_access(access_token)
-      uri = URI("https://api.github.com/user")
-      req = Net::HTTP::Get.new(uri.path)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      req["Authorization"] = "#{access_token} OAUTH-TOKEN"
-      res = http.request(req)
+      res = `curl -H "Authorization: #{access_token} OAUTH-TOKEN" https://api.github.com`
+      JSON.parse(res)
     end
   end
 end
