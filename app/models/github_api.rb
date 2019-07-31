@@ -35,7 +35,7 @@ class GithubApi
     end
 
     def user_access(access_token)
-      res = `curl -H "Authorization: #{access_token} OAUTH-TOKEN" https://api.github.com`
+      res = `curl -H "Authorization: #{access_token} OAUTH-TOKEN" https://api.github.com/user`
       JSON.parse(res)
     end
   end
