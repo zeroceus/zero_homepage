@@ -5,4 +5,26 @@ class Blog < ActiveRecord::Base
   has_many :comments
   paginates_per 8
 
+  before_create :init_state
+  after_create :self_draft
+  scope :submitted, -> {where("state = 'submitted'")}
+
+  state_machine :state, initial: :new do
+    event :draft do
+      transition :new => :draft
+    end
+    event :submit do
+      transition :drafted => :submitted
+      transition :new => :submitted
+    end
+  end
+
+  private
+    def init_state
+      self.state = :new
+    end
+
+    def self_draft
+      self.draft!
+    end
 end

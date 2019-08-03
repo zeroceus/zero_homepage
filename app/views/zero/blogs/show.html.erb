@@ -1,5 +1,8 @@
 <div class="blog-show">
   <%= link_to 'Edit', edit_zero_blog_path(@blog), class: 'btn btn-primary' %>
+  <%- if @blog.can_submit? %>
+    <%= link_to 'Submit', submit_zero_blog_path(@blog), method: :post, class: 'btn btn-primary', 'data-toggle' => 'tooltip', :title => '' %>
+  <% end %>
   <%= link_to 'Destroy', zero_blog_path(@blog), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-primary'%>
   <%= link_to 'Back', zero_blogs_path, class: 'btn btn-info' %>
   <h1><%= @blog.title %></h1>

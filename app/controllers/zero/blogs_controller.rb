@@ -1,6 +1,6 @@
 class Zero::BlogsController < ZeroController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy, :delete_image]
-
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :delete_image, :submit]
+  skip_before_action :verify_authenticity_token, only: [:preview]
   # GET /blogs
   # GET /blogs.json
   def index
@@ -75,6 +75,15 @@ class Zero::BlogsController < ZeroController
     result = markdown.render(params[:content])
     render json: {result: result}, status: :ok
   end
+
+  def submit
+    @blog.submit!
+    respond_to do |format|
+      format.html { redirect_to zero_blogs_path, notice: 'Blog was successfully submmitted.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

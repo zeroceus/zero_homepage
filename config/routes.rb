@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :comments
       member do
         post :delete_image
+        post :submit
       end
       collection do 
         post :preview

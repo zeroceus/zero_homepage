@@ -64,7 +64,7 @@
     var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
     $.ajax({
       type: "POST",
-      url: "<%=preview_zero_blogs_url%>" + "?&authenticity_token=" + AUTH_TOKEN,
+      url: "<%=preview_zero_blogs_url%>" + "?authenticity_token=" + AUTH_TOKEN,
       data: {
         content: getContent(),
       }

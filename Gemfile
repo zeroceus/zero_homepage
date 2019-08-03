@@ -13,8 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 group :production do
-  gem 'execjs'
-  gem 'mini_racer'
+  # gem 'execjs'
+  # gem 'mini_racer'
 end
 
 # Use jquery as the JavaScript library
@@ -54,3 +54,4 @@ gem 'puma'
 gem 'kaminari'
 gem 'redcarpet'
 gem 'activestorage-aliyun', '0.6.1'
+gem 'state_machine'
