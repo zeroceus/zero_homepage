@@ -1,7 +1,9 @@
 <div class="right-bar">
 
   <% @categories.each do |category| %>
-    <span><%= category.name %></span>
+    <p class="category-tag">
+      <%= link_to category.name, blogs_path(category_id: category.id)%>
+    </p>
   <% end %>
 
 </div>

@@ -5,6 +5,11 @@
 }
 .right-bar {
   margin: 60px 60px 0 30px;
+  p {
+    .category-tag {
+      height: 8px;      
+    }
+  }
 }
 .blog-show {
   margin: 60px 20px 60px 120px;
