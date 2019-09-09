@@ -2,6 +2,9 @@
   <% if notice %>
     <p id="notice" class="alert alert-success"><%= notice %></p>
   <% end %>
+
+  <h3>Blogs</h3>
+  <br>
     <% @blogs.each do |blog| %>
       <div class="blog-block">
         <h1><%= link_to blog.title, zero_blog_path(blog), class: 'blog-title' %></h1>

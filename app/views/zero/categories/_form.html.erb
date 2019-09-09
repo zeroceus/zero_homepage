@@ -1,4 +1,4 @@
-<div class="container col-md-6">
+<div>
   <%= form_with(model: category, url: category.persisted? ? zero_category_path(category) : zero_categories_path, local: true) do |form| %>
     <% if category.errors.any? %>
       <div id="error_explanation">
@@ -23,7 +23,7 @@
       <%= image_tag(url_for(category.cover)) %>
     <% end %>
     <div class="form-group">
-      <%= form.submit 'Submit', class: 'btn btn-primary btn-lg' %>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>

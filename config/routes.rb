@@ -20,9 +20,6 @@ Rails.application.routes.draw do
         post :delete_image
         post :submit
       end
-      collection do 
-        post :preview
-      end
     end
     resources :comments
     resources :categories

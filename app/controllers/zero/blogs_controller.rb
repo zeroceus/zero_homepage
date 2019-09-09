@@ -1,6 +1,5 @@
 class Zero::BlogsController < ZeroController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :delete_image, :submit]
-  skip_before_action :verify_authenticity_token, only: [:preview]
   # GET /blogs
   # GET /blogs.json
   def index
@@ -68,12 +67,6 @@ class Zero::BlogsController < ZeroController
         # format.json {}, status: :ok
       end
     end
-  end
-
-  def preview
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-    result = markdown.render(params[:content])
-    render json: {result: result}, status: :ok
   end
 
   def submit

@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 <div class='blog-form-container'>
   <div class="blog-form">
     <%= form_with(model: blog, url: blog.persisted? ? zero_blog_path(blog) : zero_blogs_path, local: true) do |form| %>
@@ -36,8 +37,7 @@
     <% end %>
   </div>
   <div class="blog-content-previewer">
-    <div class='blog-preview'>
-        <%= @preview%>
+    <div id='blog-preview'>
     </div>
   </div>
 </div>
@@ -60,16 +60,10 @@
   }
 
   function setPreview(content) {
-    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
-    $.ajax({
-      type: "POST",
-      url: "<%=preview_zero_blogs_url(host: 'zero-no-kaga.moe')%>" + "?authenticity_token=" + AUTH_TOKEN,
-      data: {
-        content: getContent(),
-      }
-    }).done(function(res) {
-      $('.blog-preview').html(res.result);
-    })
+    var converter = new showdown.Converter(),
+        previewer = document.getElementById('blog-preview')
+        html = converter.makeHtml(getContent());
+    previewer.innerHTML = html;
   }
 
   function copyImageSrc(event) {
