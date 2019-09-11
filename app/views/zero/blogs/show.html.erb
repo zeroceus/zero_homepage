@@ -10,5 +10,10 @@
     <ion-icon name="pricetag"></ion-icon>
     <span class="blog-category"><%= @blog.category.name%></span>
   </p>
-  <%= render_md_content(@blog.content) %>
+  <div id="blog-content" class="markdown-body"></div>
 </div>
+
+<script>
+  var target = document.getElementById("blog-content");
+  showMDContent(`<%= @blog.content.html_safe %>`, target);
+</script>

@@ -11,7 +11,7 @@ class Blog < ActiveRecord::Base
 
   state_machine :state, initial: :new do
     event :draft do
-      transition :new => :draft
+      transition :new => :drafted
     end
     event :submit do
       transition :drafted => :submitted

@@ -13,8 +13,7 @@
       <ion-icon name="pricetag" class="align-middle"></ion-icon>
       <span class="blog-category"><%= @blog.category.name%></span>
     </p>
-    <div class="blog-content">
-      <%= render_md_content(@blog.content) %>
+    <div id="blog-content" class="markdown-body">
     </div>
     <div class="blog-comment">
       <%= render 'comment_block'%>
@@ -24,3 +23,7 @@
 <%= render 'right_block'%>
 
 </div>
+<script>
+  var target = document.getElementById("blog-content");
+  showMDContent(`<%= @blog.content.html_safe %>`, target);
+</script>

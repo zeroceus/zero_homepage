@@ -52,7 +52,6 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem 'puma'
 gem 'kaminari'
-gem 'redcarpet'
 gem 'activestorage-aliyun', '0.6.1'
 gem 'state_machine'
 gem 'mysql2'

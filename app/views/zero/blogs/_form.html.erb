@@ -37,33 +37,24 @@
     <% end %>
   </div>
   <div class="blog-content-previewer">
-    <div id='blog-preview'>
+    <div id='blog-preview' class="markdown-body">
     </div>
   </div>
 </div>
 <script>
   var textarea = $('textarea[name="blog[content]"]')
-  const DEBOUNCE_INTERVAL = 1000
-
   var timer
 
   textarea.keyup(function(event) {
     clearTimeout(timer)
     timer = setTimeout(function() {
-      console.log(getContent())
-      setPreview(getContent())
+      var target = document.getElementById('blog-preview')
+      showMDContent(getContent(), target)
     }, DEBOUNCE_INTERVAL)
   });
 
   function getContent() {
     return $('textarea[name="blog[content]"]').val();
-  }
-
-  function setPreview(content) {
-    var converter = new showdown.Converter(),
-        previewer = document.getElementById('blog-preview')
-        html = converter.makeHtml(getContent());
-    previewer.innerHTML = html;
   }
 
   function copyImageSrc(event) {
