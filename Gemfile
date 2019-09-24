@@ -55,3 +55,4 @@ gem 'kaminari'
 gem 'activestorage-aliyun', '0.6.1'
 gem 'state_machine'
 gem 'mysql2'
+gem "font-awesome-rails"

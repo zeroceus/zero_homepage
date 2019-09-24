@@ -4,6 +4,7 @@
       <%= link_to 'ZeroHome', root_path, class: 'navbar-brand js-scroll-trigger'%>
       <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="align-middle">Menu</span>
+        <%= fa_icon "bars", class: "align-middle" %>
         <ion-icon name="menu" class="align-middle"></ion-icon>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -41,7 +42,7 @@
       </div>
       <h3>Zero</h3>
       <p>一个随处可见的普通人</p>
-      <a href="mailto:zeroex11@qq.com" class="align-middle"><ion-icon name="mail" size="large"></ion-icon></a>
+      <a href="mailto:zeroex11@qq.com" class="align-middle"><%= fa_icon "envelope", class: 'fa-2x' %>
     </div>
   </div>
 </header>

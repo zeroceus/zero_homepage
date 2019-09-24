@@ -8,9 +8,15 @@
       </ol>
     </nav>
 
+    <% if notice %>
+      <p id="notice" class="alert alert-success"><%= notice %></p>
+    <% elsif alert %>
+      <p id="notice" class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
     <h1 class="title"><%= @blog.title %></h1>
     <p class="blog-footer">
-      <ion-icon name="pricetag" class="align-middle"></ion-icon>
+      <%= fa_icon "tag", class: "align-middle" %>
       <span class="blog-category"><%= @blog.category.name%></span>
     </p>
     <div id="blog-content" class="markdown-body">

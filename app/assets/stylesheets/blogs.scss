@@ -4,7 +4,11 @@
   justify-content: space-between;
 }
 .right-bar {
-  margin: 60px 60px 0 30px;
+  margin: 60px 60px 0 20px;
+  width: 100px;
+  .category-title {
+    margin-bottom: 10px;
+  }
   p {
     .category-tag {
       height: 8px;      
@@ -36,9 +40,46 @@
   }
   .blog-comment {
     margin-top: 30px;
+    .comments {
+      .comment {
+        display: flex;
+        margin: 25px 0;
+        .user-avatar {
+          border-radius: 10px;
+        }
+        .comment-info {
+          opacity: 0.8;
+          background-color: #fff;
+          border: 1px solid #d1d5da;
+          border-radius: 3px;
+          flex: 1;
+          .comment-top {
+            display: flex;
+            justify-content: space-between;
+            color: #586069;
+            padding: 3px 10px;
+            background-color: #f6f8fa;
+            border-bottom: 1px solid #d1d5da;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            .comment-at {
+              font-size: 14px;
+            }
+          }
+          .comment-content {
+            padding: 3px 10px;
+          }
+        }
+      }
+    }
+    .comment-content-field { 
+      width: 450px;
+      height: 150px;
+    }
     .hint {
       font-size: 16px;
       margin: 5px;
+      color: dimgrey;
     }
   }
 }

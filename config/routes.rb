@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
 
   resources :blogs, only: [:show, :index]
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :index]
   resources :categories, only: [:index]
 
-  get :auth, controller: "application"
-
-  get 'about' => 'home#index'
   root to: 'blogs#index'
-  get 'login' => 'home#login'
 
+  get 'login' => 'home#login'
+  get 'about' => 'home#index'
   get 'auth' => 'home#auth'
 
   namespace :zero do

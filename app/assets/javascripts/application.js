@@ -23,6 +23,6 @@ const DEBOUNCE_INTERVAL = 1000
 
 function showMDContent(content, target) {
   var converter = new showdown.Converter(),
-      html = converter.makeHtml(content);
+    html = converter.makeHtml(content);
   target.innerHTML = html;
 }

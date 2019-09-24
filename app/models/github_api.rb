@@ -4,7 +4,7 @@ require 'securerandom'
 class GithubApi
 
   class << self
-    def get_oauth_authorize_url(redirect_uri, scope='public_repo', allow_signup=true)
+    def get_oauth_authorize_url(redirect_uri, scope='user', allow_signup=true)
       params = {
         client_id: GithubSetting.client_id,
         redirect_uri: redirect_uri,
@@ -35,7 +35,15 @@ class GithubApi
     end
 
     def user_access(access_token)
-      res = `curl -H "Authorization: #{access_token} OAUTH-TOKEN" https://api.github.com/user`
+      uri = URI("https://api.github.com/user")
+      http = Net::HTTP.new(uri.host, uri.port)
+      req = Net::HTTP::Get.new(uri)
+      req['Authorization'] = "token #{access_token}"
+      req['User-Agent'] = 'zero blog'
+      http.use_ssl = true
+      res = http.request(req).body
+    
+      puts res
       JSON.parse(res)
     end
   end
