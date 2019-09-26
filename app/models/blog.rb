@@ -4,6 +4,7 @@ class Blog < ActiveRecord::Base
   has_many_attached :images
   has_many :comments
   paginates_per 8
+  has_rich_text :blog_content
 
   before_create :init_state
   after_create :self_draft

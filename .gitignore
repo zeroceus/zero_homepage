@@ -25,3 +25,11 @@ config/credentials.yml.enc
 config/environments/production.rb
 nohup.out
 public/assets/*
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+yarn.lock
