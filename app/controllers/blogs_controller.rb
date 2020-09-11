@@ -8,7 +8,7 @@ class BlogsController < ApplicationController
     if params[:category_id].present?
       @blogs = Blog.submitted.where(category_id: params[:category_id]).page(params[:page])
     else
-      @blogs = Blog.submitted.page params[:page]
+      @blogs = Blog.submitted.order(id: :desc).page params[:page]
     end
     # render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found
   end

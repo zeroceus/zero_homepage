@@ -14,7 +14,7 @@ class Zero::SessionsController < ApplicationController
   end
 
   def destroy
-    session[:is_login] = false
+    session[:is_login] = nil
   end
 
   private
