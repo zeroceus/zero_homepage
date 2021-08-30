@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0.beta1'
+gem 'rails', '~> 6.1.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
 # Use SCSS for stylesheets
@@ -43,7 +43,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -58,5 +58,6 @@ gem 'state_machine'
 gem 'mysql2'
 gem "font-awesome-rails"
 
-gem 'webpacker', '>= 4.0.0.rc.3'
+gem 'webpacker', github: "rails/webpacker"
+gem 'react-rails'
 gem 'image_processing', '~> 1.2'
