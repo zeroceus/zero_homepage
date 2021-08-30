@@ -1,0 +1,29 @@
+{
+  "name": "app",
+  "private": true,
+  "dependencies": {
+    "@rails/actioncable": "latest",
+    "@rails/actiontext": "^6.0.4-1",
+    "@rails/activestorage": "latest",
+    "@rails/webpacker": "^6.0.0-rc.5",
+    "babel-plugin-macros": "^3.1.0",
+    "jquery": "^3.6.0",
+    "trix": "^1.2.0",
+    "turbolinks": "^5.2.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "version": "0.1.0",
+  "babel": {
+    "presets": [
+      "./node_modules/@rails/webpacker/package/babel/preset.js"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "@webpack-cli/serve": "^1.5.2",
+    "webpack-dev-server": "^4.0.0"
+  }
+}

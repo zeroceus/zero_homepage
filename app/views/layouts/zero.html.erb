@@ -3,8 +3,8 @@
 <head>
   <title>ZeroHomepage</title>
   <%= favicon_link_tag 'favicon.jpg' %>
-  <%= stylesheet_link_tag    'zero', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
