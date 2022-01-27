@@ -1,9 +1,8 @@
 class Blog < ActiveRecord::Base
   belongs_to :category
   validates_presence_of :title, :content
-  has_many_attached :images
   has_many :comments
-  paginates_per 8
+  paginates_per 3
   has_rich_text :blog_content
 
   before_create :init_state
@@ -18,6 +17,20 @@ class Blog < ActiveRecord::Base
       transition :drafted => :submitted
       transition :new => :submitted
     end
+  end
+
+  def to_json
+    {
+      id: id,
+      title: title,
+      date: created_at.strftime("%Y/%m/%d"),
+      created_at: created_at.strftime("%Y/%m/%d %T"),
+      content: content,
+      state: state_name,
+      category_id: category_id,
+      category_name: category.name,
+      comments: comments
+    }
   end
 
   private

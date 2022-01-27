@@ -1,5 +1,5 @@
 class Zero::BlogsController < ZeroController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy, :delete_image, :submit]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :submit]
   # GET /blogs
   # GET /blogs.json
   def index
@@ -7,6 +7,13 @@ class Zero::BlogsController < ZeroController
       @blogs = Blog.where(category_id: params[:category_id]).page(params[:page])
     else
       @blogs = Blog.page params[:page]
+    end
+    
+    @blogs = @blogs.map(&:to_json)
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: {blogs: @blogs}, status: :ok}
     end
   end
 
@@ -18,21 +25,24 @@ class Zero::BlogsController < ZeroController
   # GET /blogs/new
   def new
     @blog = Blog.new
+    @categories = Category.all.map{|category| [category.name, category.id]}
   end
 
   # GET /blogs/1/edit
   def edit
+    @categories = Category.all.map{|category| [category.name, category.id]}
   end
 
   # POST /blogs
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
-
     respond_to do |format|
       if @blog.save
+        format.json { render json: {msg: 'success'}, status: :ok}
         format.html { redirect_to zero_blogs_path(@blog), notice: 'Blog was successfully created.' }
       else
+        format.json { render json: {msg: @blog.errors.messages}, status: :bad_request}
         format.html { render :new }
       end
     end
@@ -43,8 +53,10 @@ class Zero::BlogsController < ZeroController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
+        format.json { render json: {msg: 'success'}, status: :ok}
         format.html { redirect_to zero_blogs_path(@blog), notice: 'Blog was successfully updated.' }
       else
+        format.json { render json: {msg: @blog.errors.messages}, status: :bad_request}
         format.html { render :edit }
       end
     end
@@ -53,27 +65,30 @@ class Zero::BlogsController < ZeroController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
-    @blog.destroy
-    respond_to do |format|
-      format.html { redirect_to zero_blogs_path, notice: 'Blog was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def delete_image
-    attachment = @blog.images.find(params[:attachment_id])
-    if attachment.purge
+    if @blog.destroy!
       respond_to do |format|
-        # format.json {}, status: :ok
+        format.html { redirect_to zero_blogs_path, notice: 'Blog was successfully destroyed.' }
+        format.json { render json: {msg: 'success'}, status: :ok }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to zero_blogs_path, notice: 'Destroyed fail.' }
+        format.json { render json: {msg: 'fail'}, status: :bad_request }
       end
     end
   end
 
   def submit
-    @blog.submit!
-    respond_to do |format|
-      format.html { redirect_to zero_blogs_path, notice: 'Blog was successfully submmitted.' }
-      format.json { head :no_content }
+    if @blog.submit!
+      respond_to do |format|
+        format.html { redirect_to zero_blogs_path, notice: 'Blog was successfully submmitted.' }
+        format.json { render json: {blog: @blog.to_json}, status: :ok}
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to zero_blogs_path, notice: 'Blog was successfully submmitted.' }
+        format.json { render json: {msg: @blog.errors.messages}, status: :bad_request}
+      end
     end
   end
 

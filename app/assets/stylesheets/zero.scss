@@ -1,23 +1,11 @@
 //= require actiontext
 
-@import "bootstrap";
-@import "zero/dashboard";
-@import "zero/blogs";
-@import "github_md";
-@import "font-awesome";
+@import "./actiontext.scss";
 
-#nav-header {
-  positon: sticky;
+
+trix-editor {
+    pre {
+        background-color:beige;
+    }
 }
-.navbar-brand {
-  padding-left: 40px;
-}
-.btn {
-  min-width: 120px;
-  border-radius: 20px;
-}
-.zero-avatar {
-  height: 60px;
-  width: 60px;
-  border-radius: 30px;
-}
+

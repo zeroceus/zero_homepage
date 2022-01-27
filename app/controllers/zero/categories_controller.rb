@@ -23,6 +23,7 @@ class Zero::CategoriesController < ZeroController
 
     respond_to do |format|
       if @category.save
+        format.json { render json: {msg: 'success'}, status: :ok}
         format.html { redirect_to zero_categories_path, notice: 'Category was successfully created.' }
       else
         format.html { render :new }
@@ -35,7 +36,8 @@ class Zero::CategoriesController < ZeroController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to zero_category_path(@category), notice: 'Category was successfully updated.' }
+        format.json { render json: {msg: 'success'}, status: :ok}
+        format.html { redirect_to zero_categories_path, notice: 'Category was successfully updated.' }
       else
         format.html { render :edit }
       end

@@ -15,6 +15,7 @@ class Zero::SessionsController < ApplicationController
 
   def destroy
     session[:is_login] = nil
+    redirect_to new_zero_session_path
   end
 
   private

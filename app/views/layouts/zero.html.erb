@@ -2,14 +2,20 @@
 <html>
 <head>
   <title>ZeroHomepage</title>
-  <%= favicon_link_tag 'favicon.jpg' %>
-  
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= favicon_pack_tag 'favicon.jpg' %>
+  <%= javascript_pack_tag 'zero', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'zero', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<%= render 'layouts/zero/header'%>
-<%= yield %>
+<body style="margin: 0">
+
+<div style="display: flex">
+  <%= render 'layouts/zero/header'%>
+  <div style="flex: 1; padding:25px">
+    <div style="min-height: 64px;" ></div>
+    <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>

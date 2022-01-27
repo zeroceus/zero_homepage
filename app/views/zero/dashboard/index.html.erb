@@ -1,15 +1,1 @@
-<div class="container">
-  <% Category.all.each do |category|%>
-    <a class="card btn" href="<%= zero_blogs_path(category_id: category.id)%>">
-      <% if category.cover.attached?%>
-        <%= image_tag(url_for(category.cover), class: 'card-cover') %>
-      <% else %>
-        <div class="block"></div>
-      <% end %>
-      <div class="card-body">
-        <h3 class="card-title"><%= category.name%></h3>
-        <div class="card-text">Blogs count: <%= category.blogs.count%></div>
-      </div>
-    </a>
-  <% end %>
-</div>
+<%= react_component("zero/dashboard", { categories: @categories }) %>

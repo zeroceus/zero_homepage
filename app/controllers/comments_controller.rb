@@ -25,6 +25,14 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    if @current_user.present?
+      
+    else
+      redirect_to request.referer, alert: 'Login first!'
+    end
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

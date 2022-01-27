@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
   resources :blogs, only: [:show, :index]
-  resources :comments, only: [:create, :index]
+  resources :comments, only: [:index, :create, :destroy]
   resources :categories, only: [:index]
 
   root to: 'blogs#index'
 
   get 'login' => 'home#login'
-  get 'about' => 'home#index'
   get 'auth' => 'home#auth'
 
   namespace :zero do
@@ -15,14 +14,13 @@ Rails.application.routes.draw do
     resources :blogs do
       resources :comments
       member do
-        post :delete_image
         post :submit
       end
     end
-    resources :comments
+    resources :comments, only: [:index, :show, :destroy]
     resources :categories
-    resources :users, only: [:index]
-
+    resources :users, only: [:index, :destroy]
+    delete 'blobs/:signed_id' => 'blobs#destroy'
     root to: 'dashboard#index'
   end
 end

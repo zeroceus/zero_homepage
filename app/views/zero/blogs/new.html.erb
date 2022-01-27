@@ -1,7 +1,1 @@
-<u>
-  <%= link_to 'Back to index', zero_blogs_path, class: 'back-btn' %>
-</u>
-
-<div class="blog-new">
-  <%= render 'form', blog: @blog %>
-</div>
+<%= react_component("zero/blog/form", {title: 'New Blog', blog: @blog, categories: @categories}) %>

@@ -1,9 +1,0 @@
-<div class="right-bar">
-  <div class="category-title">所有分类</div>
-  <% @categories.each do |category| %>
-    <p class="category-tag">
-      <%= link_to "#{category.name}()", blogs_path(category_id: category.id)%>
-    </p>
-  <% end %>
-
-</div>
