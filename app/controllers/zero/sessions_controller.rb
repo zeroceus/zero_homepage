@@ -24,6 +24,10 @@ class Zero::SessionsController < ApplicationController
     end
 
     def authenticate
-      return session_params[:name] == ZERO_NAME && session_params[:password] == ZERO_SECRET
+      return session_params[:name] == ZERO_NAME && crypt(session_params[:password]) == ZERO_SECRET
+    end
+
+    def crypt(content)
+      Digest::SHA256.hexdigest(content)
     end
 end

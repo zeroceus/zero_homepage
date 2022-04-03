@@ -33,3 +33,4 @@ public/assets/*
 yarn-debug.log*
 .yarn-integrity
 yarn.lock
+package-json.lock
