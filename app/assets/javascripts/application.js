@@ -10,15 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-require jquery
-require jquery_ujs
-require jquery3
-require popper
 
-const DEBOUNCE_INTERVAL = 1000
 
-function showMDContent(content, target) {
-  var converter = new showdown.Converter(),
-    html = converter.makeHtml(content);
-  target.innerHTML = html;
-}
+
