@@ -7,4 +7,4 @@ var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 window.Turbolinks = Turbolinks;
-
+console.log('Hello World from Webpacker')
