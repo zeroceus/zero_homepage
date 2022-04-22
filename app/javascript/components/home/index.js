@@ -78,12 +78,11 @@ export default function Index(props) {
   const handleChangePage = (event, page) => {
     event.preventDefault();
     const currentUrl = new URL(window.location.href);
-    let url = '';
-
+    let url = `${host}/blogs`;
     if(currentUrl.search) {
-      url = `${currentUrl.origin}${currentUrl.pathname}.json${currentUrl.search}&page=${page}`;
+      url = `${url}.json${currentUrl.search}&page=${page}`;
     }else {
-      url = `${currentUrl.href}.json?page=${page}`;
+      url = `${url}.json?page=${page}`;
     }
 
     request().get(url).then(res => {
@@ -153,7 +152,7 @@ export default function Index(props) {
               <Divider variant="middle" />
               <Grid container spacing={4}>
                 {
-                  blogs.length > 0 ? (blogs.map((blog) => (<BlogCard key={blog.id} blog={blog}/>))) : 
+                  blogs && blogs.length > 0 ? (blogs.map((blog) => (<BlogCard key={blog.id} blog={blog}/>))) : 
                   (<Grid item xs={12}><Typography component="h2" variant="h6" color="secondary">  NO BLOGS YET </Typography></Grid>)
                 }
                 </Grid>

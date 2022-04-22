@@ -2,7 +2,7 @@ class Blog < ActiveRecord::Base
   belongs_to :category
   validates_presence_of :title, :content
   has_many :comments
-  paginates_per 3
+  paginates_per 5
   has_rich_text :blog_content
 
   before_create :init_state

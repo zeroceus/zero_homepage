@@ -110,7 +110,6 @@ const avatarVoice = () => {
 export default function SideBar(props) {
   const classes = useStyles();
   const { categories, params, setBlog, setBlogs, setPage, setTotalPage } = props;
-  console.log(host);
   const kagaMisaki = `${host}/audio/kagamisaki.mp3`;
 
   const showByCategory = (event, category_id) => {

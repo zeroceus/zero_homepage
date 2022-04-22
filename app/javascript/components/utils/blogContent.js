@@ -17,5 +17,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const BlogContent = (content) => {
     const classes = useStyles();
+    console.log('rendering blog content...');
     return (<Box className={classes.content}>{parse(content)}</Box>);
 }
