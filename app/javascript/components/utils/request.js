@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const host = "http://localhost:3000";
+let env = process.env.RAILS_ENV || "development";
+
+export const host = env == "production" ? "https://zeroblog.online" : "http://localhost:3000";
 
 export const zero_host = `${host}/zero`;
 
